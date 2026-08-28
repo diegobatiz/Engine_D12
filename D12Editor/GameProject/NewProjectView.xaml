@@ -15,7 +15,7 @@
             <ListBox Width="195" Height="250" ItemsSource="{Binding ProjectTemplates}" x:Name="TemplateListBox"
                      SelectedIndex="0">
                 <ListBox.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate>  
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{Binding Icon}"/>
                             <TextBlock Text="{Binding ProjectType}" Margin="5,0,0,0"/>

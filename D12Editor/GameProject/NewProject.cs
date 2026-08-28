@@ -32,7 +32,7 @@ namespace D12Editor.GameProject
     class NewProject : ViewModelBase
     {
         //TODO: get the path from install location
-        private readonly string _templatePath = @"..\..\..\D12Editor\ProjectTemplates";
+        private readonly string _templatePath = @"..\..\..\D12Editor\ProjectTemplates\";
         private string _projectName = "NewProject";
         public string ProjectName
         {
@@ -164,7 +164,7 @@ namespace D12Editor.GameProject
                 File.Copy(template.ScreenshotFilePath, Path.GetFullPath(Path.Combine(dirInfo.FullName, "screenshot.png")));
 
                 var projectXml = File.ReadAllText(template.ProjectFilePath);
-                projectXml = string.Format(projectXml, ProjectName, ProjectPath);
+                projectXml = string.Format(projectXml, ProjectName, path);
                 var projectPath = Path.GetFullPath(Path.Combine(path, $"{ProjectName}{Project.Extension}"));
                 File.WriteAllText(projectPath, projectXml);
 
