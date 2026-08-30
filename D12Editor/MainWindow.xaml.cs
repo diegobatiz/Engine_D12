@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,12 +26,18 @@ namespace D12Editor
         {
             InitializeComponent();
             Loaded += OnMainWindowLoaded;
+            Closing += OnMainWindowClosing;
         }
 
         private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
         {
             Loaded -= OnMainWindowLoaded;
             OpenProjectBrowserDialog();
+        }
+        private void OnMainWindowClosing(object sender, CancelEventArgs e)
+        {
+            Closing -= OnMainWindowClosing;
+            Project.Current?.Unload();
         }
 
         private void OpenProjectBrowserDialog()
@@ -42,6 +49,7 @@ namespace D12Editor
             }
             else
             {
+                Project.Current?.Unload();
                 DataContext = projectBrowser.DataContext;
             }
         }

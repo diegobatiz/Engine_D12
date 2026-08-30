@@ -99,7 +99,7 @@ namespace D12Editor.GameProject
             }
             WriteProjectData();
 
-            return null;
+            return Project.Load(project.FullPath);
         }
     }
 }
