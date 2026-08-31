@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace D12Editor.Utilities
 {
-    interface IUndoRedo
+    public interface IUndoRedo
     {
         string Name { get; }
         void Undo();
@@ -41,7 +41,7 @@ namespace D12Editor.Utilities
         }
     }
 
-    class UndoRedo
+    public class UndoRedo
     {
         private readonly  ObservableCollection<IUndoRedo> _redoList = new ObservableCollection<IUndoRedo>();
         private readonly  ObservableCollection<IUndoRedo> _undoList = new ObservableCollection<IUndoRedo>();

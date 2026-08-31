@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using D12Editor.GameProject;
 
-namespace D12Editor.Editors
+namespace D12Editor.Utilities
 {
     /// <summary>
-    /// Interaction logic for ProjectLayoutView.xaml
+    /// Interaction logic for UndoRedoView.xaml
     /// </summary>
-    public partial class ProjectLayoutView : UserControl
+    public partial class UndoRedoView : UserControl
     {
-        public ProjectLayoutView()
+        public UndoRedoView()
         {
             InitializeComponent();
         }
