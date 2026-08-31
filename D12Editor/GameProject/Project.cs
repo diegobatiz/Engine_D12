@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using D12Editor.Utilities;
 
 namespace D12Editor.GameProject
@@ -22,11 +23,9 @@ namespace D12Editor.GameProject
         public string Path { get; private set; }
         public string FullPath => $"{Path}{Name}{Extension}";
         [DataMember(Name = "Scenes")]
-
         private ObservableCollection<Scene> _scenes = new ObservableCollection<Scene>();
         public ReadOnlyObservableCollection<Scene> Scenes
         { get; private set; }
-
         private Scene _activeScene;
         public Scene ActiveScene
         {
@@ -40,8 +39,11 @@ namespace D12Editor.GameProject
                 }
             }
         }
-
         public static Project Current => Application.Current.MainWindow.DataContext as Project;
+        public ICommand AddScene { get; private set; }
+        public ICommand RemoveScene { get; private set; }
+
+
 
         public Project(string name, string path)
         {
@@ -51,6 +53,8 @@ namespace D12Editor.GameProject
 
             OnDeserialized(new StreamingContext());
         }
+
+
 
         public static Project Load(string file)
         {
@@ -68,13 +72,13 @@ namespace D12Editor.GameProject
             Serializer.ToFile(project, project.FullPath);
         }
 
-        public void AddScene(string sceneName)
+        private void AddSceneInternal(string sceneName)
         {
             Debug.Assert(!string.IsNullOrEmpty(sceneName.Trim()));
             _scenes.Add(new Scene(this, sceneName));
         }
 
-        public void RemoveScene(Scene scene)
+        private void RemoveSceneInternal(Scene scene)
         {
             Debug.Assert(_scenes.Contains(scene));
             _scenes.Remove(scene);
