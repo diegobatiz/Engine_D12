@@ -68,6 +68,18 @@ namespace D12Editor.GameProject
             Serializer.ToFile(project, project.FullPath);
         }
 
+        public void AddScene(string sceneName)
+        {
+            Debug.Assert(!string.IsNullOrEmpty(sceneName.Trim()));
+            _scenes.Add(new Scene(this, sceneName));
+        }
+
+        public void RemoveScene(Scene scene)
+        {
+            Debug.Assert(_scenes.Contains(scene));
+            _scenes.Remove(scene);
+        }
+
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
