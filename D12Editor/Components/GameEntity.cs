@@ -6,7 +6,10 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 using D12Editor.GameProject;
+using D12Editor.Utilities;
 
 namespace D12Editor.Components
 {
@@ -29,16 +32,42 @@ namespace D12Editor.Components
             }
         }
         [DataMember]
+        private bool _isEnabled;
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                if (_isEnabled != value)
+                {
+                    _isEnabled = value;
+                    OnPropertyChanged(nameof(IsEnabled))
+                }
+            }
+        }
+
+        [DataMember]
         public Scene ParentScene { get; private set; }
         [DataMember(Name = nameof(Components))]
         private readonly ObservableCollection<Component> _components = new ObservableCollection<Component>();
         public ReadOnlyObservableCollection<Component> Components { get; private set; }
+
+        public ICommand RenameCommand { get; private set; }
+        public ICommand EnabelCommand { get; private set; }
 
         public GameEntity(Scene scene)
         {
             Debug.Assert(scene != null);
             ParentScene = scene;
             _components.Add(new Transform(this));
+            OnDeserialized(new StreamingContext());
+
+            RenameCommand = new RelayCommand<string>(x =>
+            {
+                var oldName = _name;
+                Name = x;
+                Project.UndoRedo.Add(new UndoRedoAction(nameof(Name), this, oldName, x, $"Rename entity {oldName} to {x}"));
+            }, x => x != _name);
         }
 
         [OnDeserialized]
