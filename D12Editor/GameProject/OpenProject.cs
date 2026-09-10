@@ -55,7 +55,8 @@ namespace D12Editor.GameProject
             catch(Exception e)
             {
                 Debug.WriteLine(e.Message);
-                //TODO: Log error
+                Logger.Log(MessageType.Error, $"Failed to open project data");
+                throw;
             }
         }
 

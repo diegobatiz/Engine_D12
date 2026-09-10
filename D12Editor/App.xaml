@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:D12Editor"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Dictionaries/ControlTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>    
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

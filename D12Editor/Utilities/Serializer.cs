@@ -22,7 +22,8 @@ namespace D12Editor.Utilities
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                //TODO: Log error
+                Logger.Log(MessageType.Error, $"Failed to serialize {instance} to {path}");
+                throw;
             }
         }
 
@@ -38,8 +39,8 @@ namespace D12Editor.Utilities
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                //TODO: Log error
-                return default(T);
+                Logger.Log(MessageType.Error, $"Failed to deserialize {path}");
+                throw;
             }
         }
     }

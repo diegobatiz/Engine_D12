@@ -173,8 +173,8 @@ namespace D12Editor.GameProject
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                //TODO: log error
-                return string.Empty;
+                Logger.Log(MessageType.Error, $"Failed to create {ProjectName}");
+                throw;
             }
         }
 
@@ -202,7 +202,8 @@ namespace D12Editor.GameProject
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                //TODO: log error
+                Logger.Log(MessageType.Error, $"Failed to read project template");
+                throw;
             }
         }
     }

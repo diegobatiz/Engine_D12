@@ -69,12 +69,13 @@ namespace D12Editor.GameProject
 
         public void Unload()
         {
-
+            UndoRedo.Reset();
         }
 
         public static void Save(Project project)
         {
             Serializer.ToFile(project, project.FullPath);
+            Logger.Log(MessageType.Info, $"Project saved to {project.FullPath}");
         }
 
         private void AddScene(string sceneName)

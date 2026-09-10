@@ -32,7 +32,7 @@ namespace D12Editor.Components
             }
         }
         [DataMember]
-        private bool _isEnabled;
+        private bool _isEnabled = true;
         public bool IsEnabled
         {
             get => _isEnabled;
@@ -41,7 +41,7 @@ namespace D12Editor.Components
                 if (_isEnabled != value)
                 {
                     _isEnabled = value;
-                    OnPropertyChanged(nameof(IsEnabled))
+                    OnPropertyChanged(nameof(IsEnabled));
                 }
             }
         }
@@ -53,7 +53,7 @@ namespace D12Editor.Components
         public ReadOnlyObservableCollection<Component> Components { get; private set; }
 
         public ICommand RenameCommand { get; private set; }
-        public ICommand EnabelCommand { get; private set; }
+        public ICommand IsEnabledCommand { get; private set; }
 
         public GameEntity(Scene scene)
         {
@@ -68,6 +68,13 @@ namespace D12Editor.Components
                 Name = x;
                 Project.UndoRedo.Add(new UndoRedoAction(nameof(Name), this, oldName, x, $"Rename entity {oldName} to {x}"));
             }, x => x != _name);
+
+            IsEnabledCommand = new RelayCommand<bool>(x =>
+            {
+                var oldValue = _isEnabled;
+                IsEnabled = x;
+                Project.UndoRedo.Add(new UndoRedoAction(nameof(IsEnabled), this, oldValue, x, x ? $"Enable {Name}" : $"Disable {Name}"));
+            });
         }
 
         [OnDeserialized]
