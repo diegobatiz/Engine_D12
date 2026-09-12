@@ -13,7 +13,7 @@ using D12Editor.Utilities;
 namespace D12Editor.GameProject
 {
     [DataContract]
-    public class Scene : ViewModelBase
+    class Scene : ViewModelBase
     {
         private string _name;
         [DataMember]

@@ -37,14 +37,7 @@ namespace D12Editor.Editors
 
         private void OnGameEntities_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GameEntityView.Instance.DataContext = null;
             var listBox = sender as ListBox;
-            if (e.AddedItems.Count > 0)
-            {
-                var entity = listBox.SelectedItems[0];
-                GameEntityView.Instance.DataContext = entity;
-            }
-
             var newSelection = listBox.SelectedItems.Cast<GameEntity>().ToList();
             var addedItems = e.AddedItems.Cast<GameEntity>();
             var removedItems = e.RemovedItems.Cast<GameEntity>();
@@ -64,6 +57,13 @@ namespace D12Editor.Editors
                 },
                 "Selection changed"
             ));
+
+            MSGameEntity msEntity = null;
+            if (newSelection.Any())
+            {
+                msEntity = new MSGameEntity(newSelection);
+            }
+            GameEntityView.Instance.DataContext = msEntity;
         }
     }
 }
