@@ -42,7 +42,7 @@ namespace d12::GameEntity
 		const id::id_type index{ id::index(id) };
 
 		//Create Transform Component
-		assert(transforms[index].IsValid());
+		assert(!transforms[index].IsValid());
 		transforms[index] = Transform::CreateTransform(*info.transform, new_entity);
 		if (!transforms[index].IsValid()) return Entity();
 
