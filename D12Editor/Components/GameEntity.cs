@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using D12Editor.GameProject;
 using D12Editor.Utilities;
+using D12Editor.DLLWrapper;
 
 namespace D12Editor.Components
 {
@@ -18,7 +19,7 @@ namespace D12Editor.Components
     [KnownType(typeof(Transform))]
     class GameEntity : ViewModelBase
     {
-        private int _entityId = -1;
+        private int _entityId = ID.INVALID_ID;
         public int EntityId
         {
             get => _entityId;
@@ -28,6 +29,29 @@ namespace D12Editor.Components
                 {
                     _entityId = value;
                     OnPropertyChanged(nameof(EntityId));
+                }
+            }
+        }
+
+        private bool _isActive = false;
+        public bool IsActive
+        {
+            get => _isActive;
+            set
+            {
+                if (_isActive != value)
+                {
+                    _isActive = value;
+                    if (_isActive)
+                    {
+                        EntityId = EngineAPI.CreateGameEntity(this);
+                        Debug.Assert(ID.IsValid(_entityId));
+                    }
+                    else
+                    {
+                        EngineAPI.RemoveGameEntity(this);
+                    }
+                    OnPropertyChanged(nameof(IsActive));
                 }
             }
         }
@@ -74,6 +98,9 @@ namespace D12Editor.Components
             _components.Add(new Transform(this));
             OnDeserialized(new StreamingContext());
         }
+
+        public Component GetComponent(Type type) => Components.FirstOrDefault(c => c.GetType() == type);
+        public T GetComponent<T>() where T : Component => GetComponent(typeof(T)) as T;
 
         [OnDeserialized]
         void OnDeserialized(StreamingContext context)

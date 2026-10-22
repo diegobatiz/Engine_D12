@@ -32,7 +32,7 @@ namespace D12Editor.GameProject
     class NewProject : ViewModelBase
     {
         //TODO: get the path from install location
-        private readonly string _templatePath = @"..\..\..\D12Editor\ProjectTemplates\";
+        private readonly string _templatePath = @"..\..\D12Editor\ProjectTemplates\";
         private string _projectName = "NewProject";
         public string ProjectName
         {

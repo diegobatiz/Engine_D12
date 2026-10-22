@@ -38,6 +38,11 @@ namespace
 	{
 		TransformComponent transform;
 	};
+
+	GameEntity::Entity EntityFromId(id::id_type id)
+	{
+		return GameEntity::Entity{ GameEntity::entity_id{id} };
+	}
 }
 
 EDITOR_INTERFACE id::id_type
@@ -57,4 +62,5 @@ EDITOR_INTERFACE void
 RemoveGameEntity(id::id_type id)
 {
 	assert(id::is_valid(id));
+	GameEntity::RemoveGameEntity(EntityFromId(id));
 }

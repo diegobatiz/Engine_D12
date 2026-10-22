@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "D12Editor": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
