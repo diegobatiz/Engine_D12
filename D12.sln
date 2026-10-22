@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineTest", "EngineTest\EngineTest.vcxproj", "{69B66820-35E7-4535-A2BF-FB2C8266D0B5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineDLL", "EngineDLL\EngineDLL.vcxproj", "{157FA0E0-854F-41BF-AB4A-ACFD0F4C49DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +29,10 @@ Global
 		{69B66820-35E7-4535-A2BF-FB2C8266D0B5}.Debug|x64.Build.0 = Debug|x64
 		{69B66820-35E7-4535-A2BF-FB2C8266D0B5}.Release|x64.ActiveCfg = Release|x64
 		{69B66820-35E7-4535-A2BF-FB2C8266D0B5}.Release|x64.Build.0 = Release|x64
+		{157FA0E0-854F-41BF-AB4A-ACFD0F4C49DC}.Debug|x64.ActiveCfg = Debug|x64
+		{157FA0E0-854F-41BF-AB4A-ACFD0F4C49DC}.Debug|x64.Build.0 = Debug|x64
+		{157FA0E0-854F-41BF-AB4A-ACFD0F4C49DC}.Release|x64.ActiveCfg = Release|x64
+		{157FA0E0-854F-41BF-AB4A-ACFD0F4C49DC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

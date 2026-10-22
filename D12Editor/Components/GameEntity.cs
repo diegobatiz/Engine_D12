@@ -18,6 +18,20 @@ namespace D12Editor.Components
     [KnownType(typeof(Transform))]
     class GameEntity : ViewModelBase
     {
+        private int _entityId = -1;
+        public int EntityId
+        {
+            get => _entityId;
+            set
+            {
+                if (_entityId != value)
+                {
+                    _entityId = value;
+                    OnPropertyChanged(nameof(EntityId));
+                }
+            }
+        }
+
         private string _name;
         [DataMember]
         public string Name
