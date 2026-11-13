@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:D12Editor"
         xmlns:editors="clr-namespace:D12Editor.Editors"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="D12Editor" Height="1080" Width="1920">
+        Title="D12Editor" Height="1080" Width="1920"
+        Style="{StaticResource D12WindowStyle}">
     <Grid>
         <editors:WorldEditorView/>
     </Grid>
